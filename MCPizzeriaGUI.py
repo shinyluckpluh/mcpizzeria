@@ -26,10 +26,19 @@ venster.wm_title("MC Pizzeria")
 
 knopSluit = Button(venster, text="sluiten", width=12, command=venster.destroy)
 knopSluit.grid(row=17, column=4)
+
 labelIntro = Label(venster, text="Welkom!")
 labelIntro.grid(row=0, column=0, sticky="W")
 
+labelKlantnaam = Label(venster, text= "Klantnaam:")
+labelKlantnaam.grid(row = 1, column = 0)
 
+ingevoerde_klantnaam = StringVar()
+invoerveldKlantnaam = Entry(venster, textvariable=ingevoerde_klantnaam)
+invoerveldKlantnaam.grid(row=1, column=1, sticky="W")
+
+invoerveldKlantNr = Entry(venster)
+invoerveldKlantNr.grid(row=2, column=1, sticky="W")
 
 
 
