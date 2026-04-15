@@ -72,6 +72,13 @@ labelMogenlijkheden.grid(row= 5, column= 0)
 listboxMenu = Listbox(venster, height = 6, width = 50)
 listboxMenu.grid(row= 5, column= 1, rowspan = 6, columnspan = 2, sticky='W' )
 
+scrollbarlistboxMenu = Scrollbar(venster)
+scrollbarlistboxMenu.grid(row=5, column=2, rowspan=6, sticky="E")
+listboxMenu.config(yscrollcommand=scrollbarlistboxMenu.set)
+scrollbarlistboxMenu.config(command=listboxMenu.yview)
+
+
+
 KnopToonPizzas = Button(venster, text = "Toon alle pizza's", width = 12)
 KnopToonPizzas.grid(row = 5, column = 4)
 
