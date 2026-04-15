@@ -29,7 +29,7 @@ def maakTabellenAan():
  CREATE TABLE IF NOT EXISTS tbl_klanten(
  klantNr INTEGER PRIMARY KEY AUTOINCREMENT,
  klantAchternaam TEXT);""")
-print("Tabel 'tbl_klanten' aangemaakt.")
+ print("Tabel 'tbl_klanten' aangemaakt.")
 
 
 def printTabel(tabel_naam):
