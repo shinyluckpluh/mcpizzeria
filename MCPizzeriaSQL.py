@@ -31,7 +31,6 @@ def maakTabellenAan():
  klantAchternaam TEXT);""")
  print("Tabel 'tbl_klanten' aangemaakt.")
 
-
 def printTabel(tabel_naam):
  cursor.execute("SELECT * FROM " + tabel_naam) #SQL om ALLE gegevens te halen
  opgehaalde_gegevens = cursor.fetchall() #sla gegevens op in een variabele
@@ -60,6 +59,13 @@ def voegKlantToe(naam_nieuwe_klant):
  db.commit()
  print("Klant toegevoegd:")
  printTabel("tbl_klanten")
+
+#Zoek alle gegevens over klant met ingevoerde naam
+def zoekKlantInTabel(ingevoerde_klantnaam):
+ cursor.execute("SELECT * FROM tbl_klanten WHERE klantAchternaam = ?", (ingevoerde_klantnaam,))
+ zoek_resultaat = cursor.fetchall()
+ return zoek_resultaat
+
 
 ### --------- Hoofdprogramma  ---------------
 # maakTabellenAan()

@@ -14,6 +14,11 @@ import MCPizzeriaSQL
 
 
 ### ---------  Functie definities  -----------------
+def zoekKlant():
+ #haal de ingevoerde_klantnaam op uit het invoerveld
+ # en gebruik dit om met SQL de klant in database te vinden
+ gevonden_klanten = MCPizzeriaSQL.zoekKlantInTabel(ingevoerde_klantnaam.get())
+ print(gevonden_klanten) # om te testen
 
 
 ### --------- Hoofdprogramma  ---------------
@@ -40,7 +45,7 @@ invoerveldKlantnaam.grid(row=1, column=1, sticky="W")
 invoerveldKlantNr = Entry(venster)
 invoerveldKlantNr.grid(row=2, column=1, sticky="W")
 
-knopZoekOpKlantnaam = Button(venster, text = "Zoek Klant", width = 12)
+knopZoekOpKlantnaam = Button(venster, text = "Zoek Klant", width = 12, command= zoekKlant)
 knopZoekOpKlantnaam.grid(row=1, column=4)
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
