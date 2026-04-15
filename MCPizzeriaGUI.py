@@ -40,7 +40,8 @@ invoerveldKlantnaam.grid(row=1, column=1, sticky="W")
 invoerveldKlantNr = Entry(venster)
 invoerveldKlantNr.grid(row=2, column=1, sticky="W")
 
-
+knopZoekOpKlantnaam = Button(venster, text = "Zoek Klant", width = 12)
+knopZoekOpKlantnaam.grid(row=1, column=4)
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
 venster.mainloop()
