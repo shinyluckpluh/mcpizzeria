@@ -57,5 +57,24 @@ invoerveldKlantNr.grid(row=2, column=1, sticky="W")
 knopZoekOpKlantnaam = Button(venster, text = "Zoek Klant", width = 12, command= zoekKlant)
 knopZoekOpKlantnaam.grid(row=1, column=4)
 
+labelPizzanaam = Label(venster, text= "Pizzanaam:")
+labelPizzanaam.grid(row= 4, column= 0)
+
+invoerveldPizzanaam = Entry(venster, textvariable=ingevoerde_klantnaam) #pas aan
+invoerveldPizzanaam.grid(row= 4, column= 1, sticky='W')
+
+knopZoekOpPizzanaam = Button(venster, text = "Zoek Pizza", width = 12 )
+knopZoekOpPizzanaam.grid(row= 4, column=  4)
+
+labelMogenlijkheden = Label(venster, text= "Mogenlijkheden:")
+labelMogenlijkheden.grid(row= 5, column= 0)
+
+listboxMenu = Listbox(venster, height = 6, width = 50)
+listboxMenu.grid(row= 5, column= 1, rowspan = 6, columnspan = 2, sticky='W' )
+
+KnopToonPizzas = Button(venster, text = "Toon alle pizza's", width = 12)
+KnopToonPizzas.grid(row = 5, column = 4)
+
+
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
 venster.mainloop()
