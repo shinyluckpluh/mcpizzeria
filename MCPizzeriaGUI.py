@@ -28,6 +28,20 @@ def zoekKlant():
      #toon klantAchternaam, de tweede kolom uit het resultaat in de invoerveld
      invoerveldKlantnaam.insert(END, rij[1]) 
 
+def zoekPizza():
+ #haal de ingevoerde_klantnaam op uit het invoerveld
+ # en gebruik dit om met SQL de klant in database te vinden
+ print(ingevoerde_pizzanaam.get())
+ gevonden_pizzas = MCPizzeriaSQL.zoekPizzaInTabel(ingevoerde_pizzanaam.get())
+ print(gevonden_pizzas) # om te testen
+ 
+ invoerveldPizzanaam.delete(0, END) #invoerveld voor naam leeg maken
+ listboxMenu.delete(0,END)
+
+ for rij in gevonden_pizzas: #voor elke rij dat de query oplevert
+     #toon klantAchternaam, de tweede kolom uit het resultaat in de invoerveld
+     listboxMenu.insert(END, rij[1], rij[2]) 
+
 
 
 ### --------- Hoofdprogramma  ---------------
@@ -60,10 +74,11 @@ knopZoekOpKlantnaam.grid(row=1, column=4)
 labelPizzanaam = Label(venster, text= "Pizzanaam:")
 labelPizzanaam.grid(row= 4, column= 0)
 
-invoerveldPizzanaam = Entry(venster, textvariable=ingevoerde_klantnaam) #pas aan
+ingevoerde_pizzanaam = StringVar()
+invoerveldPizzanaam = Entry(venster, textvariable=ingevoerde_pizzanaam) #pas aan
 invoerveldPizzanaam.grid(row= 4, column= 1, sticky='W')
 
-knopZoekOpPizzanaam = Button(venster, text = "Zoek Pizza", width = 12 )
+knopZoekOpPizzanaam = Button(venster, text = "Zoek Pizza", width = 12, command = zoekPizza )
 knopZoekOpPizzanaam.grid(row= 4, column=  4)
 
 labelMogenlijkheden = Label(venster, text= "Mogenlijkheden:")

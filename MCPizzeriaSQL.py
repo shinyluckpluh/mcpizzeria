@@ -80,6 +80,22 @@ def zoekKlantInTabel(ingevoerde_klantnaam):
 
  return zoek_resultaat
 
+def zoekPizzaInTabel(ingevoerde_pizzanaam):
+ cursor.execute("SELECT * FROM tbl_pizzas WHERE gerechtNaam = ?", (ingevoerde_pizzanaam,))
+ zoek_resultaat = cursor.fetchall()
+
+ if zoek_resultaat == []: #resultaat is leeg, geen gerecht gevonden
+     print("Geen Pizza gevonden met naam", ingevoerde_pizzanaam)
+     #print("Klant wordt nu toegevoegd.")
+     #cursor.execute("INSERT INTO tbl_pizzas VALUES(NULL, ? )", (ingevoerde_pizzanaam, ))
+     #db.commit() #gegevens in de database zetten
+     #print("Pizza toegevoegd aan 'tbl_Pizza's':" + ingevoerde_pizzanaam )
+     #printTabel("tbl_pizzas")
+
+     #nu dat klant in tabel is gezet, kunnen we zijn gegevens ophalen
+     #cursor.execute("SELECT * FROM tbl_pizzas WHERE gerechtNaam = ?",(ingevoerde_pizzanaam,))
+     #zoek_resultaat = cursor.fetchall()
+ return zoek_resultaat
 
 
 ### --------- Hoofdprogramma  ---------------
