@@ -42,8 +42,12 @@ def zoekPizza():
      #toon klantAchternaam, de tweede kolom uit het resultaat in de invoerveld
      listboxMenu.insert(END, rij[1], rij[2]) 
 
-
-
+def toonMenuInListbox():
+ listboxMenu.delete(0, END) #maak de listbox leeg
+ listboxMenu.insert(0, "ID Gerecht Prijs")
+ pizza_tabel = MCPizzeriaSQL.vraagOpGegevensPizzaTabel()
+ for regel in pizza_tabel:
+    listboxMenu.insert(END, regel) #voeg elke regel uit resultaat in listboxMenu
 ### --------- Hoofdprogramma  ---------------
 
 venster = Tk()
@@ -94,8 +98,9 @@ scrollbarlistboxMenu.config(command=listboxMenu.yview)
 
 
 
-KnopToonPizzas = Button(venster, text = "Toon alle pizza's", width = 12)
+KnopToonPizzas = Button(venster, text = "Toon alle pizza's", width = 12, command= toonMenuInListbox)
 KnopToonPizzas.grid(row = 5, column = 4)
+
 
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan

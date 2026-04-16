@@ -97,6 +97,11 @@ def zoekPizzaInTabel(ingevoerde_pizzanaam):
      #zoek_resultaat = cursor.fetchall()
  return zoek_resultaat
 
+def vraagOpGegevensPizzaTabel():
+ cursor.execute("SELECT * FROM tbl_pizzas")
+ resultaat = cursor.fetchall()
+ print("Tabel tbl_pizzas:", resultaat)
+ return resultaat
 
 ### --------- Hoofdprogramma  ---------------
 # maakTabellenAan()
