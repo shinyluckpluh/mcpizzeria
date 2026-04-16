@@ -60,6 +60,18 @@ def haalGeselecteerdeRijOp(event):
  #zet tekst in veld
  invoerveldGeselecteerdePizza.insert(0, geselecteerdeTekst) 
 
+#voeg de bestelling van klant met gekozen pizza en aantal toe
+#in de winkelwagentabel
+#en toon de bestelling in de listbox op het scherm
+def voegToeAanWinkelWagen():
+ klantNr = invoerveldKlantNr.get()
+ gerechtID = geselecteerdePizza.get()
+ aantal = aantalGeslecteerdePizza.get()
+ MCPizzeriaSQL.voegToeAanWinkelWagen(klantNr, gerechtID, aantal)
+ winkelwagen_tabel = MCPizzeriaSQL.vraagOpGegevensWinkelWagenTabel()
+ listboxWinkelwagen.delete(0, END) #listbox eerst even leeg maken
+ for regel in winkelwagen_tabel:
+     listboxWinkelwagen.insert(END, regel)
 
 
 ### --------- Hoofdprogramma  ---------------
@@ -118,25 +130,34 @@ KnopToonPizzas.grid(row = 5, column = 3)
 labelGekozenPizza = Label(venster, text= "Gekozen pizza:")
 labelGekozenPizza.grid(row = 12, column = 0)
 
-invoerveldGeselecteerdePizza = Entry(venster)
+geselecteerdePizza = StringVar()
+invoerveldGeselecteerdePizza = Entry(venster, textvariable= geselecteerdePizza)
 invoerveldGeselecteerdePizza.grid(row = 12, column = 1, sticky= "W")
 
 labelAantal = Label(venster, text = "Aantal:")
 labelAantal.grid(row = 13, column = 0)
 
-GekozenAantal= IntVar()
-GekozenAantal.set(1)
-KeuzeMenuAantal = OptionMenu(venster, GekozenAantal, 1,2,3)
+aantalGeslecteerdePizza= IntVar()
+aantalGeslecteerdePizza.set(1)
+KeuzeMenuAantal = OptionMenu(venster, aantalGeslecteerdePizza, 1,2,3)
 KeuzeMenuAantal.grid(row=13, column =1)
 
-knopVoegToe = Button(venster, text = "Voeg toe", width = 12)
-knopVoegToe.grid(row = 13, column = 3)
+knopVoegToeAanWinkelWagen = Button(venster, text = "Voeg toe", width = 12, command = voegToeAanWinkelWagen)
+knopVoegToeAanWinkelWagen.grid(row = 13, column = 3)
 
 labelBestelling = Label(venster, text = "Bestelling:")
 labelBestelling.grid(row = 14, column = 0)
 
 listboxWinkelwagen = Listbox(venster, height = 5, width = 50)
 listboxWinkelwagen.grid(row= 14, column= 1, rowspan = 6, columnspan = 2, sticky='W' )
+
+scrollbarlistboxWinkelwagen = Scrollbar(venster)
+scrollbarlistboxWinkelwagen.grid(row=14, column=2, rowspan=6, sticky="E")
+listboxWinkelwagen.config(yscrollcommand=scrollbarlistboxWinkelwagen.set)
+scrollbarlistboxWinkelwagen.config(command=listboxWinkelwagen.yview)
+
+
+
 
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
