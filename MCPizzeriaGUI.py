@@ -36,18 +36,32 @@ def zoekPizza():
  print(gevonden_pizzas) # om te testen
  
  invoerveldPizzanaam.delete(0, END) #invoerveld voor naam leeg maken
- listboxMenu.delete(0,END)
+ listboxMenu.delete(1,END)
 
  for rij in gevonden_pizzas: #voor elke rij dat de query oplevert
      #toon klantAchternaam, de tweede kolom uit het resultaat in de invoerveld
-     listboxMenu.insert(END, rij[1], rij[2]) 
+     listboxMenu.insert(END, rij) 
 
 def toonMenuInListbox():
- listboxMenu.delete(0, END) #maak de listbox leeg
- listboxMenu.insert(0, "ID Gerecht Prijs")
+ listboxMenu.delete(1, END) #maak de listbox leeg
+ 
  pizza_tabel = MCPizzeriaSQL.vraagOpGegevensPizzaTabel()
  for regel in pizza_tabel:
     listboxMenu.insert(END, regel) #voeg elke regel uit resultaat in listboxMenu
+
+### functie voor het selecteren van een rij uit de listbox en deze in een andere veld te plaatsen
+def haalGeselecteerdeRijOp(event):
+ #bepaal op welke regel er geklikt is
+ geselecteerdeRegelInLijst = listboxMenu.curselection()[0]
+ #haal tekst uit die regel
+ geselecteerdeTekst = listboxMenu.get(geselecteerdeRegelInLijst)
+ #verwijder tekst uit veld waar je in wilt schrijven, voor het geval er al iets staat
+ invoerveldGeselecteerdePizza.delete(0, END)
+ #zet tekst in veld
+ invoerveldGeselecteerdePizza.insert(0, geselecteerdeTekst) 
+
+
+
 ### --------- Hoofdprogramma  ---------------
 
 venster = Tk()
@@ -90,17 +104,22 @@ labelMogenlijkheden.grid(row= 5, column= 0)
 
 listboxMenu = Listbox(venster, height = 6, width = 50)
 listboxMenu.grid(row= 5, column= 1, rowspan = 6, columnspan = 2, sticky='W' )
+listboxMenu.insert(0, "ID Gerecht Prijs")
+listboxMenu.bind('<<ListboxSelect>>', haalGeselecteerdeRijOp)
 
 scrollbarlistboxMenu = Scrollbar(venster)
 scrollbarlistboxMenu.grid(row=5, column=2, rowspan=6, sticky="E")
 listboxMenu.config(yscrollcommand=scrollbarlistboxMenu.set)
 scrollbarlistboxMenu.config(command=listboxMenu.yview)
 
-
-
 KnopToonPizzas = Button(venster, text = "Toon alle pizza's", width = 12, command= toonMenuInListbox)
 KnopToonPizzas.grid(row = 5, column = 4)
 
+labelGekozenPizza = Label(venster, text= "Gekozen pizza:")
+labelGekozenPizza.grid(row = 12, column = 0)
+
+invoerveldGeselecteerdePizza = Entry(venster)
+invoerveldGeselecteerdePizza.grid(row = 12, column = 1, sticky= "W")
 
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
