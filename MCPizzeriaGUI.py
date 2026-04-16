@@ -71,7 +71,7 @@ venster.wm_title("MC Pizzeria")
 
 
 knopSluit = Button(venster, text="sluiten", width=12, command=venster.destroy)
-knopSluit.grid(row=17, column=4)
+knopSluit.grid(row=20, column=3)
 
 labelIntro = Label(venster, text="Welkom!")
 labelIntro.grid(row=0, column=0, sticky="W")
@@ -87,17 +87,17 @@ invoerveldKlantNr = Entry(venster)
 invoerveldKlantNr.grid(row=2, column=1, sticky="W")
 
 knopZoekOpKlantnaam = Button(venster, text = "Zoek Klant", width = 12, command= zoekKlant)
-knopZoekOpKlantnaam.grid(row=1, column=4)
+knopZoekOpKlantnaam.grid(row=1, column=3)
 
 labelPizzanaam = Label(venster, text= "Pizzanaam:")
-labelPizzanaam.grid(row= 4, column= 0)
+labelPizzanaam.grid(row= 3, column= 0)
 
 ingevoerde_pizzanaam = StringVar()
 invoerveldPizzanaam = Entry(venster, textvariable=ingevoerde_pizzanaam) #pas aan
-invoerveldPizzanaam.grid(row= 4, column= 1, sticky='W')
+invoerveldPizzanaam.grid(row= 3, column= 1, sticky='W')
 
 knopZoekOpPizzanaam = Button(venster, text = "Zoek Pizza", width = 12, command = zoekPizza )
-knopZoekOpPizzanaam.grid(row= 4, column=  4)
+knopZoekOpPizzanaam.grid(row= 4, column=  3)
 
 labelMogenlijkheden = Label(venster, text= "Mogenlijkheden:")
 labelMogenlijkheden.grid(row= 5, column= 0)
@@ -113,13 +113,30 @@ listboxMenu.config(yscrollcommand=scrollbarlistboxMenu.set)
 scrollbarlistboxMenu.config(command=listboxMenu.yview)
 
 KnopToonPizzas = Button(venster, text = "Toon alle pizza's", width = 12, command= toonMenuInListbox)
-KnopToonPizzas.grid(row = 5, column = 4)
+KnopToonPizzas.grid(row = 5, column = 3)
 
 labelGekozenPizza = Label(venster, text= "Gekozen pizza:")
 labelGekozenPizza.grid(row = 12, column = 0)
 
 invoerveldGeselecteerdePizza = Entry(venster)
 invoerveldGeselecteerdePizza.grid(row = 12, column = 1, sticky= "W")
+
+labelAantal = Label(venster, text = "Aantal:")
+labelAantal.grid(row = 13, column = 0)
+
+GekozenAantal= IntVar()
+GekozenAantal.set(1)
+KeuzeMenuAantal = OptionMenu(venster, GekozenAantal, 1,2,3)
+KeuzeMenuAantal.grid(row=13, column =1)
+
+knopVoegToe = Button(venster, text = "Voeg toe", width = 12)
+knopVoegToe.grid(row = 13, column = 3)
+
+labelBestelling = Label(venster, text = "Bestelling:")
+labelBestelling.grid(row = 14, column = 0)
+
+listboxWinkelwagen = Listbox(venster, height = 5, width = 50)
+listboxWinkelwagen.grid(row= 14, column= 1, rowspan = 6, columnspan = 2, sticky='W' )
 
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
