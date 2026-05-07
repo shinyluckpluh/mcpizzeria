@@ -156,9 +156,5 @@ scrollbarlistboxWinkelwagen.grid(row=14, column=2, rowspan=6, sticky="E")
 listboxWinkelwagen.config(yscrollcommand=scrollbarlistboxWinkelwagen.set)
 scrollbarlistboxWinkelwagen.config(command=listboxWinkelwagen.yview)
 
-
-
-
-
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
 venster.mainloop()
